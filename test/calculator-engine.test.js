@@ -5,9 +5,7 @@ const Calc = require('../index');
 describe('calculator-engine', () => {
 
   const insertNumberString = (numberString) => {
-    [...numberString].forEach(numberChar => {
-      Calc.Input.insertCharacter(numberChar);
-    });
+    Calc.Input.insertNumber(numberString);
   };
 
   const pushNumberString = (numberString) => {
@@ -426,6 +424,13 @@ describe('calculator-engine', () => {
 
     it('clears the stack', () => {
       Calc.Input.insertCharacter('5');
+      Calc.Input.insertCharacter('4');
+      expect(Calc.state()).to.deep.equal({
+        engine: {
+          edit: '54',
+          stack: []
+        }
+      });
       Calc.Stack.push();
       Calc.Stack.clear();
       expect(Calc.state()).to.deep.equal({
