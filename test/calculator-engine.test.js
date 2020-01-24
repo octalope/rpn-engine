@@ -28,10 +28,8 @@ describe('calculator-engine', () => {
           it(`inserts the character ${JSON.stringify(character)}`, () => {
             Calc.Input.insertCharacter(character);
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: character,
-                stack: []
-              }
+              edit: character,
+              stack: []
             });
           });
         });
@@ -48,10 +46,8 @@ describe('calculator-engine', () => {
         it(`inserts the characters for ${JSON.stringify(character)}`, () => {
           Calc.Input.insertCharacter(character);
           expect(Calc.state()).to.deep.equal({
-            engine: {
-              edit: character,
-              stack: []
-            }
+            edit: character,
+            stack: []
           });
         });
       });
@@ -62,34 +58,26 @@ describe('calculator-engine', () => {
         Calc.Input.insertCharacter(1);
         Calc.Input.removeCharacter();
         expect(Calc.state()).to.deep.equal({
-          engine: {
-            edit: '',
-            stack: []
-          }
+          edit: '',
+          stack: []
         });
       });
 
       it('ignores character removal during edit when the edit is empty', () => {
         Calc.Input.insertCharacter(1);
         expect(Calc.state()).to.deep.equal({
-          engine: {
-            edit: '1',
-            stack: []
-          }
+          edit: '1',
+          stack: []
         });
         Calc.Input.removeCharacter();
         expect(Calc.state()).to.deep.equal({
-          engine: {
-            edit: '',
-            stack: []
-          }
+          edit: '',
+          stack: []
         });
         Calc.Input.removeCharacter();
         expect(Calc.state()).to.deep.equal({
-          engine: {
-            edit: '',
-            stack: []
-          }
+          edit: '',
+          stack: []
         });
       });
     });
@@ -100,34 +88,26 @@ describe('calculator-engine', () => {
           it('changes the sign of a positive number', () => {
             insertNumberString('1');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '1',
-                stack: []
-              }
+              edit: '1',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '-1',
-                stack: []
-              }
+              edit: '-1',
+              stack: []
             });
           });
 
           it('changes the sign of a negative number', () => {
             insertNumberString('-1');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '-1',
-                stack: []
-              }
+              edit: '-1',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '1',
-                stack: []
-              }
+              edit: '1',
+              stack: []
             });
           });
 
@@ -135,17 +115,13 @@ describe('calculator-engine', () => {
             insertNumberString('1');
             Calc.Input.removeCharacter();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '',
-                stack: []
-              }
+              edit: '',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '-',
-                stack: []
-              }
+              edit: '-',
+              stack: []
             });
           });
 
@@ -153,17 +129,13 @@ describe('calculator-engine', () => {
             insertNumberString('-1');
             Calc.Input.removeCharacter();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '-',
-                stack: []
-              }
+              edit: '-',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '',
-                stack: []
-              }
+              edit: '',
+              stack: []
             });
           });
         });
@@ -172,102 +144,78 @@ describe('calculator-engine', () => {
           it('changes the sign of an implied positive exponent', () => {
             insertNumberString('1E5');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '1E5',
-                stack: []
-              }
+              edit: '1E5',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '1E-5',
-                stack: []
-              }
+              edit: '1E-5',
+              stack: []
             });
           });
 
           it('changes the sign of an explicit positive exponent', () => {
             insertNumberString('1E+5');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '1E+5',
-                stack: []
-              }
+              edit: '1E+5',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '1E-5',
-                stack: []
-              }
+              edit: '1E-5',
+              stack: []
             });
           });
 
           it('changes the sign of a negative exponent', () => {
             insertNumberString('3E-2');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3E-2',
-                stack: []
-              }
+              edit: '3E-2',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3E+2',
-                stack: []
-              }
+              edit: '3E+2',
+              stack: []
             });
           });
 
           it('changes the sign of an implied nonexistent postive exponent', () => {
             insertNumberString('3E');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3E',
-                stack: []
-              }
+              edit: '3E',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3E-',
-                stack: []
-              }
+              edit: '3E-',
+              stack: []
             });
           });
 
           it('changes the sign of an explicit nonexistent postive exponent', () => {
             insertNumberString('3E+');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3E+',
-                stack: []
-              }
+              edit: '3E+',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3E-',
-                stack: []
-              }
+              edit: '3E-',
+              stack: []
             });
           });
 
           it('changes the sign of a nonexistent negative exponent', () => {
             insertNumberString('3E-');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3E-',
-                stack: []
-              }
+              edit: '3E-',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3E+',
-                stack: []
-              }
+              edit: '3E+',
+              stack: []
             });
           });
         });
@@ -276,102 +224,78 @@ describe('calculator-engine', () => {
           it('changes the sign of an implied positive exponent', () => {
             insertNumberString('1e5');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '1e5',
-                stack: []
-              }
+              edit: '1e5',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '1e-5',
-                stack: []
-              }
+              edit: '1e-5',
+              stack: []
             });
           });
 
           it('changes the sign of an explicit positive exponent', () => {
             insertNumberString('1e+5');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '1e+5',
-                stack: []
-              }
+              edit: '1e+5',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '1e-5',
-                stack: []
-              }
+              edit: '1e-5',
+              stack: []
             });
           });
 
           it('changes the sign of a negative exponent', () => {
             insertNumberString('3e-2');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3e-2',
-                stack: []
-              }
+              edit: '3e-2',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3e+2',
-                stack: []
-              }
+              edit: '3e+2',
+              stack: []
             });
           });
 
           it('changes the sign of an implied nonexistent postive exponent', () => {
             insertNumberString('3e');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3e',
-                stack: []
-              }
+              edit: '3e',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3e-',
-                stack: []
-              }
+              edit: '3e-',
+              stack: []
             });
           });
 
           it('changes the sign of an explicit nonexistent postive exponent', () => {
             insertNumberString('3e+');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3e+',
-                stack: []
-              }
+              edit: '3e+',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3e-',
-                stack: []
-              }
+              edit: '3e-',
+              stack: []
             });
           });
 
           it('changes the sign of a nonexistent negative exponent', () => {
             insertNumberString('3e-');
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3e-',
-                stack: []
-              }
+              edit: '3e-',
+              stack: []
             });
             Calc.Input.changeSign();
             expect(Calc.state()).to.deep.equal({
-              engine: {
-                edit: '3e+',
-                stack: []
-              }
+              edit: '3e+',
+              stack: []
             });
           });
         });
@@ -382,28 +306,22 @@ describe('calculator-engine', () => {
           pushNumberString('123');
           Calc.Input.changeSign();
           expect(Calc.state()).to.deep.equal({
-            engine: {
-              stack: [-123]
-            }
+            stack: [-123]
           });
         });
         it('changes the sign of a negative number on the stack', () => {
           pushNumberString('-123');
           Calc.Input.changeSign();
           expect(Calc.state()).to.deep.equal({
-            engine: {
-              stack: [123]
-            }
+            stack: [123]
           });
         });
 
         it('returns a error for an empty stack', () => {
           Calc.Input.changeSign();
           expect(Calc.state()).to.deep.equal({
-            engine: {
-              error: 'TooFewArguments',
-              stack: []
-            }
+            error: 'TooFewArguments',
+            stack: []
           });
         });
       });
@@ -416,9 +334,7 @@ describe('calculator-engine', () => {
       Calc.Input.insertCharacter(1);
       Calc.Stack.push();
       expect(Calc.state()).to.deep.equal({
-        engine: {
-          stack: [1]
-        }
+        stack: [1]
       });
     });
 
@@ -426,17 +342,13 @@ describe('calculator-engine', () => {
       Calc.Input.insertCharacter('5');
       Calc.Input.insertCharacter('4');
       expect(Calc.state()).to.deep.equal({
-        engine: {
-          edit: '54',
-          stack: []
-        }
+        edit: '54',
+        stack: []
       });
       Calc.Stack.push();
       Calc.Stack.clear();
       expect(Calc.state()).to.deep.equal({
-        engine: {
-          stack: []
-        }
+        stack: []
       });
     });
 
@@ -446,9 +358,7 @@ describe('calculator-engine', () => {
           Calc.Input.insertCharacter('5');
           Calc.Stack.drop();
           expect(Calc.state()).to.deep.equal({
-            engine: {
-              stack: []
-            }
+            stack: []
           });
         });
       });
@@ -458,9 +368,7 @@ describe('calculator-engine', () => {
           pushNumberString('5');
           Calc.Stack.drop();
           expect(Calc.state()).to.deep.equal({
-            engine: {
-              stack: []
-            }
+            stack: []
           });
         });
       });
@@ -469,14 +377,33 @@ describe('calculator-engine', () => {
         it('returns an error', () => {
           Calc.Stack.drop();
           expect(Calc.state()).to.deep.equal({
-            engine: {
-              error: 'TooFewArguments',
-              stack: []
-            }
+            error: 'TooFewArguments',
+            stack: []
           });
         });
       });
     });
+  });
+
+  describe('UnaryOperation', () => {
+    it('returns an error if no arguments are available', () => {
+      Calc.UnaryOperation.sin();
+      expect(Calc.state()).to.deep.equal({
+        error: 'TooFewArguments',
+        stack: []
+      });
+    });
+
+    describe('sin', () => {
+      it('takes the sin of a number', () => {
+        pushNumberString(String(Math.PI / 2));
+        Calc.UnaryOperation.sin();
+        expect(Calc.state()).to.deep.equal({
+          stack: [1]
+        });
+      });
+    });
+
   });
 
   describe('BinaryOperation', () => {
@@ -484,20 +411,16 @@ describe('calculator-engine', () => {
       pushNumberString('8');
       Calc.BinaryOperation.divide();
       expect(Calc.state()).to.deep.equal({
-        engine: {
-          error: 'TooFewArguments',
-          stack: [8]
-        }
+        error: 'TooFewArguments',
+        stack: [8]
       });
     });
 
     it('returns an error if no arguments are available', () => {
       Calc.BinaryOperation.divide();
       expect(Calc.state()).to.deep.equal({
-        engine: {
-          error: 'TooFewArguments',
-          stack: []
-        }
+        error: 'TooFewArguments',
+        stack: []
       });
     });
 
@@ -507,9 +430,7 @@ describe('calculator-engine', () => {
         pushNumberString('6.86');
         Calc.BinaryOperation.add();
         expect(Calc.state()).to.deep.equal({
-          engine: {
-            stack: [10]
-          }
+          stack: [10]
         });
       });
     });
@@ -520,9 +441,7 @@ describe('calculator-engine', () => {
         pushNumberString('2');
         Calc.BinaryOperation.subtract();
         expect(Calc.state()).to.deep.equal({
-          engine: {
-            stack: [1]
-          }
+          stack: [1]
         });
       });
     });
@@ -533,9 +452,7 @@ describe('calculator-engine', () => {
         pushNumberString('4');
         Calc.BinaryOperation.multiply();
         expect(Calc.state()).to.deep.equal({
-          engine: {
-            stack: [8]
-          }
+          stack: [8]
         });
       });
     });
@@ -546,9 +463,7 @@ describe('calculator-engine', () => {
         pushNumberString('4');
         Calc.BinaryOperation.divide();
         expect(Calc.state()).to.deep.equal({
-          engine: {
-            stack: [2]
-          }
+          stack: [2]
         });
       });
 
@@ -557,10 +472,8 @@ describe('calculator-engine', () => {
         pushNumberString('0');
         Calc.BinaryOperation.divide();
         expect(Calc.state()).to.deep.equal({
-          engine: {
-            error: 'InfiniteResult',
-            stack: [0, 1]
-          }
+          error: 'InfiniteResult',
+          stack: [0, 1]
         });
       });
     });
