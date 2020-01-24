@@ -385,31 +385,10 @@ describe('calculator-engine', () => {
     });
   });
 
-  describe('UnaryOperation', () => {
-    it('returns an error if no arguments are available', () => {
-      Calc.UnaryOperation.sin();
-      expect(Calc.state()).to.deep.equal({
-        error: 'TooFewArguments',
-        stack: []
-      });
-    });
-
-    describe('sin', () => {
-      it('takes the sin of a number', () => {
-        pushNumberString(String(Math.PI / 2));
-        Calc.UnaryOperation.sin();
-        expect(Calc.state()).to.deep.equal({
-          stack: [1]
-        });
-      });
-    });
-
-  });
-
-  describe('BinaryOperation', () => {
+  describe('Operation', () => {
     it('returns an error if only one argument is available', () => {
       pushNumberString('8');
-      Calc.BinaryOperation.divide();
+      Calc.Operation.add();
       expect(Calc.state()).to.deep.equal({
         error: 'TooFewArguments',
         stack: [8]
@@ -417,7 +396,7 @@ describe('calculator-engine', () => {
     });
 
     it('returns an error if no arguments are available', () => {
-      Calc.BinaryOperation.divide();
+      Calc.Operation.add();
       expect(Calc.state()).to.deep.equal({
         error: 'TooFewArguments',
         stack: []
@@ -428,7 +407,7 @@ describe('calculator-engine', () => {
       it('adds two numbers', () => {
         pushNumberString('3.14');
         pushNumberString('6.86');
-        Calc.BinaryOperation.add();
+        Calc.Operation.add();
         expect(Calc.state()).to.deep.equal({
           stack: [10]
         });
@@ -439,7 +418,7 @@ describe('calculator-engine', () => {
       it('subtracts two numbers', () => {
         pushNumberString('3');
         pushNumberString('2');
-        Calc.BinaryOperation.subtract();
+        Calc.Operation.subtract();
         expect(Calc.state()).to.deep.equal({
           stack: [1]
         });
@@ -450,7 +429,7 @@ describe('calculator-engine', () => {
       it('multiplies two numbers', () => {
         pushNumberString('2');
         pushNumberString('4');
-        Calc.BinaryOperation.multiply();
+        Calc.Operation.multiply();
         expect(Calc.state()).to.deep.equal({
           stack: [8]
         });
@@ -461,7 +440,7 @@ describe('calculator-engine', () => {
       it('Divides two numbers', () => {
         pushNumberString('8');
         pushNumberString('4');
-        Calc.BinaryOperation.divide();
+        Calc.Operation.divide();
         expect(Calc.state()).to.deep.equal({
           stack: [2]
         });
@@ -470,13 +449,24 @@ describe('calculator-engine', () => {
       it('returns an error when dividing by 0', () => {
         pushNumberString('1');
         pushNumberString('0');
-        Calc.BinaryOperation.divide();
+        Calc.Operation.divide();
         expect(Calc.state()).to.deep.equal({
           error: 'InfiniteResult',
           stack: [0, 1]
         });
       });
     });
+
+    describe('sin', () => {
+      it('takes the sin of a number', () => {
+        pushNumberString(String(Math.PI / 2));
+        Calc.Operation.sin();
+        expect(Calc.state()).to.deep.equal({
+          stack: [1]
+        });
+      });
+    });
+
 
   });
 
