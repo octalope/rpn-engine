@@ -56,3 +56,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# scratch tests
+test/scratch.test.js
