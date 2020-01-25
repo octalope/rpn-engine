@@ -467,6 +467,33 @@ describe('calculator-engine', () => {
       });
     });
 
+    describe('sqrt', () => {
+      it('returns an error if no arguments are available', () => {
+        Calc.Operation.sqrt();
+        expect(Calc.state()).to.deep.equal({
+          error: 'TooFewArguments',
+          stack: []
+        });
+      });
+
+      it('returns an error for a negative argument', () => {
+        pushNumberString(String(-1));
+        Calc.Operation.sqrt();
+        expect(Calc.state()).to.deep.equal({
+          error: 'ImaginaryResult',
+          stack: [-1]
+        });
+      });
+
+      it('takes the sqrt of a number', () => {
+        pushNumberString(String(4));
+        Calc.Operation.sqrt();
+        expect(Calc.state()).to.deep.equal({
+          stack: [2]
+        });
+      });
+    });
+
 
   });
 
