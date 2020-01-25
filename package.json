@@ -9,10 +9,10 @@
     "test:coverage": "nyc --reporter=lcov mocha && nyc report",
     "test:dev": "mocha ./test --watch"
   },
-  "author": "",
+  "author": "steve.c.brooks@gmail.com",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://gitlab.com/sbrooks/rpn-engine"
   },
   "license": "MIT",
   "dependencies": {
